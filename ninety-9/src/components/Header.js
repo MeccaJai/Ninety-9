@@ -7,7 +7,7 @@ render() {
         return (
             <>
                 <div className = "container text-center">
-                    <Link to = "/" className = "headhov">
+                    <Link to = "/home" className = "headhov">
                         <h1 className = "display-2" style = {{fontFamily: 'Shrikhand'}}>
                            Bar-4-Bar
                         </h1>

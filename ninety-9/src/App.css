@@ -41,9 +41,29 @@ body {
   font-size: 1rem;
 }
 .buy{
-  background-color: #70c0d8 !important;
+  background-color: #4fd925 !important;
   font-size: 11px;
   font-weight: bold;
+}
+
+.appMar {
+  margin-right: 50px;
+}
+
+.userNameSize {
+  font-size: 22px;
+}
+
+.userMar {
+  padding-top: 25px;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+.category {
+  font-size: 16px;
+  font-style: italic;
+  /*color: #252525;*/
 }
 
 /*.pd-text:hover {
@@ -165,12 +185,17 @@ body {
 }
 
 .card {
-  background-image: linear-gradient(90deg, #b23a53, #70c0d8);
+  background-image: linear-gradient(135deg, #b23a53, #70c0d8);
   height: 100%;
   width: 100%;
   margin: 0;
   border: none!important;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.testBorder {
+  border-radius: 0.25rem;
+  border: 1px solid black;
 }
 
 .searchCard {
@@ -180,10 +205,11 @@ body {
 
 .clickCard:active {
   box-shadow: none;
+
 }
 
 .back {
-  background-image: linear-gradient(90deg, #b23a53, #70c0d8);
+  background-image: linear-gradient(135deg, #b23a53, #70c0d8);
   width: 800px;
   height: 88px;
   border: none;

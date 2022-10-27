@@ -24,7 +24,7 @@ function SignIn(props) {
         if(context.currentUser != null)
         {
             context.setErrors(null, false);
-            navigate("/");
+            navigate("/home");
 
         }
         else {

@@ -11,7 +11,7 @@ render() {
                        Bar-4-Bar
                     </h1>
                     <h5 style = {{fontStyle: 'italic', color: 'Black'}}>"If you can drink it, We can think it!"</h5>
-                    <h5 style = {{color: 'black'}}><Link to = {"/login"} className = "mix shrik">Login</Link> or continue as a guest</h5>
+{/*                     <h5 style = {{color: 'black'}}><Link to = {"/login"} className = "mix shrik">Login</Link> or continue as a guest</h5> */}
                     <hr/>
                 </div>
                 <div className = "container">
