@@ -3,9 +3,10 @@ import {AuthContext} from "../context/AuthContext";
 
 function DAdminRoute()
 {
-    const {currentUser} = useContext(AuthContext);
+    // const {currentUser} = useContext(AuthContext);
 
-    return currentUser.Account_Type == "D";
+    let localStorageItem = localStorage.getItem("user");
+
+    return (JSON.parse(localStorageItem).Account_Type === "D");
 }
-
 export default DAdminRoute;
