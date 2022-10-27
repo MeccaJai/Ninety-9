@@ -3,9 +3,11 @@ import {AuthContext} from "../context/AuthContext";
 
 function AdminRoute()
 {
-    const {currentUser} = useContext(AuthContext);
+    // const {currentUser} = useContext(AuthContext);
 
-    return currentUser.Account_Type == "A";
+    let localStorageItem = localStorage.getItem("user");
+
+    return (JSON.parse(localStorageItem).Account_Type === "A");
 
 }
 
