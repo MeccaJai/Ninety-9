@@ -25,6 +25,7 @@ function SignIn(props) {
         {
             context.setErrors(null, false);
             navigate("/home");
+            // if statements needed to added for specific home pages for the users, drink admins, and admins
 
         }
         else {
