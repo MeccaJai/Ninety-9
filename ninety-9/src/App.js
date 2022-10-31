@@ -9,34 +9,38 @@ import DAdmin from "./pages/DAdmin";
 import Approval from "./pages/Approval";
 import Admin from "./pages/Admin";
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import {AuthProvider} from "../context/AuthContext";
+import PrivateRoute from "./PrivateRoute";
 
 function App(){
 
-	return (
-	<>
-		<Router>
-            <div className = "container">
-                <div className="row">
-                    <div className="col-12">
-                        <Routes>
-                            <Route exact path="/" exact element = {<SignIn />}/>
-                            <Route path="/home" element = {<Home />}/>
-                            <Route path="/popular" element={<DrinkList />}/>
-                            <Route path="/non" element={<NonList />}/>
-                            <Route path="/popular/:drinkID" element={<Recipe />}/>
-                            <Route path="/search" element={<Search />}/>
-                            <Route path="/DAdmin/:drinkID" element={<Approval />}/>
-                            <Route path="/DAdmin" element={<DAdmin />}/>
-                            <Route path="/Admin" element={<Admin />}/>
-                        </Routes>
+    return (
+        <>
+            <AuthProvider>
+                <Router>
+                    <div className = "container">
+                        <div className="row">
+                            <div className="col-12">
+                                <Routes>
+                                    <Route exact path="/" exact element = {<SignIn />}/>
+                                    <Route path="/home" element = {<PrivateRoute><Home /></PrivateRoute>} />
+                                    <Route path="/popular" element={<PrivateRoute><DrinkList /></PrivateRoute>}/>
+                                    <Route path="/non" element={<PrivateRoute><NonList /></PrivateRoute>}/>
+                                    <Route path="/popular/:drinkID" element={<PrivateRoute><Recipe /></PrivateRoute>}/>
+                                    <Route path="/search" element={<PrivateRoute><Search /></PrivateRoute>}/>
+                                    <Route path="/DAdmin/:drinkID" element={<PrivateRoute><Approval /></PrivateRoute>}/>
+                                    <Route path="/DAdmin" element={<PrivateRoute><DAdmin /></PrivateRoute>}/>
+                                    <Route path="/Admin" element={<PrivateRoute><Admin /></PrivateRoute>}/>
+                                </Routes>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
                     </div>
-                </div>
-                <br/>
-                <br/>
-            </div>
-		</Router>
-	</>
-	);
+                </Router>
+            </AuthProvider>
+        </>
+    );
 
 }
 
