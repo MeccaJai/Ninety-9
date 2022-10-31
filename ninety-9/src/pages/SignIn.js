@@ -31,6 +31,14 @@ function SignIn(props) {
             setErrors(context.errors);
         }
     }
+    
+    async function handleLogOut(event){
+       event.preventDefault();
+
+       await context.signOut();
+       navigate("/login");
+    }
+    
     return (
         <>
             <div className="container full-page">
