@@ -6,13 +6,10 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
 export const AuthContext = React.createContext({
     currentUser: {},
-    cart:[],
     errors: [],
     refresh: null,
     setErrors: () =>{},
     setCurrentUser: () => {},
-    addToCart: () =>{},
-    removeFromCart: () => {},
     signIn: () =>{},
     signOut: () =>{},
 
@@ -36,28 +33,16 @@ export class AuthProvider extends Component {
         setCurrentUser: user =>{
             this.setState({currentUser: user})
         },
-        addToCart: item =>{
-            let cart = this.state.cart;
-            cart.push(item);
-            this.setState({cart: cart});
-        },
-        removeFromCart: item => {
-            let cart = this.state.cart;
-            cart = cart.filter( (val, idx, arr) => {
-                return val !== item;
-            });
-            this.setState({cart: cart});
-        },
         signIn: async (email, password)=>{
 
             const firebaseConfig = {
-                apiKey: "AIzaSyDI2mfY4KkW-VExYRPITFTG8DempFwOimY",
-                authDomain: "bar4bar-65329.firebaseapp.com",
-                projectId: "bar4bar-65329",
-                storageBucket: "bar4bar-65329.appspot.com",
-                messagingSenderId: "876949427937",
-                appId: "1:876949427937:web:fac4920f5ca62fe32b49a0",
-                measurementId: "G-CXMLK5ZP7V"
+                apiKey: "AIzaSyD0O_zMoKyV3Bwrc_QZEftuy14VWyGMadA",
+                authDomain: "bar4bar-62819.firebaseapp.com",
+                projectId: "bar4bar-62819",
+                storageBucket: "bar4bar-62819.appspot.com",
+                messagingSenderId: "108693622175",
+                appId: "1:108693622175:web:2d2464fa1239e0829281aa",
+                measurementId: "G-0RX853S9GS"
             };
             // Initialize Firebase
             initializeApp();
