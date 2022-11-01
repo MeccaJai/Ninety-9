@@ -71,10 +71,9 @@ class UserSearch extends Component {
                             this.state.users && this.state.users.length > 0 ?
                                 this.state.users.map((user) => {
                                     return(
-                                        //replace this with the User Card
+                                            <UserCard />
                                         //user card should have the username, email, 
                                         // fname, lname, and isActive
-                                        <DrinkCard drink={drink} key={drink.idDrink} />
                                     )
                                 })
                                 : " "
