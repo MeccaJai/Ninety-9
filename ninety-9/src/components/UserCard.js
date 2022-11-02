@@ -4,6 +4,7 @@ import '../App.css';
 import {initializeApp} from "firebase/app";
 import {collection, getFirestore, orderBy, query, where, doc, setDoc, updateDoc} from "firebase/firestore";
 
+/* function to deactive a user account when a button is clicked on the card */
 async function Deactivate(props) {
     const firebaseConfig = {
         apiKey: "AIzaSyD0O_zMoKyV3Bwrc_QZEftuy14VWyGMadA",
