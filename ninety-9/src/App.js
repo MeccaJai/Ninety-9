@@ -23,14 +23,14 @@ function App(){
                             <div className="col-12">
                                 <Routes>
                                     <Route exact path="/" exact element = {<SignIn />}/>
-                                    <Route path="/home" element = {<PrivateRoute><Home /></PrivateRoute>} />
-                                    <Route path="/popular" element={<PrivateRoute><DrinkList /></PrivateRoute>}/>
-                                    <Route path="/non" element={<PrivateRoute><NonList /></PrivateRoute>}/>
-                                    <Route path="/popular/:drinkID" element={<PrivateRoute><Recipe /></PrivateRoute>}/>
-                                    <Route path="/search" element={<PrivateRoute><Search /></PrivateRoute>}/>
-                                    <Route path="/DAdmin/:drinkID" element={<PrivateRoute><Approval /></PrivateRoute>}/>
-                                    <Route path="/DAdmin" element={<PrivateRoute><DAdmin /></PrivateRoute>}/>
-                                    <Route path="/Admin" element={<PrivateRoute><Admin /></PrivateRoute>}/>
+                                    <Route path="/home" element = {<Home />} />
+                                    <Route path="/popular" element={<DrinkList />}/>
+                                    <Route path="/non" element={<NonList />}/>
+                                    <Route path="/popular/:drinkID" element={<Recipe />}/>
+                                    <Route path="/search" element={<Search />}/>
+                                    <Route path="/DAdmin/:drinkID" element={<Approval />}/>
+                                    <Route path="/DAdmin" element={<DAdmin />}/>
+                                    <Route path="/Admin" element={<Admin />}/>
                                 </Routes>
                             </div>
                         </div>
