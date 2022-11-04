@@ -58,16 +58,16 @@ function SignIn(props) {
                         <div className="card-body bg-light">
                             <div className="tab-content">
                                 <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         {/* Username Form */}
                                         <div className="form-outline mb-4">
                                             <label className="form-label shrik" for="loginName">Username:</label>
-                                            <input type="email" id="loginName" className="form-control formFix" />
+                                            <input type="email" id="loginName" className="form-control formFix" required ref={emailRef} />
                                         </div>
                                         {/* Password Form*/}
                                         <div className="form-outline mb-4">
                                             <label className="form-label shrik" for="loginPassword">Password:</label>
-                                            <input type="password" id="loginPassword" className="form-control formFix" />
+                                            <input type="password" id="loginPassword" className="form-control formFix" required ref={passwordRef} />
                                         </div>
                                         {/* Buttons */}
                                         <div className="mx-auto text-center">
