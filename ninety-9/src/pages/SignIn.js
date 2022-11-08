@@ -25,7 +25,15 @@ function SignIn(props) {
         {
             context.setErrors(null, false);
             
-            navigate("/home");
+            let user = context.currentUser; 
+            if (user.account_type == "A"){
+                navigate("/Admin");
+            }
+            else if (user.account_type == "D"){
+                navigate("/DAdmin");
+            }
+            else 
+                navigate("/home");
             // if statements needed to added for specific home pages for the users, drink admins, and admins
 
         }
@@ -39,7 +47,7 @@ function SignIn(props) {
 
        localStorage.clear();
        await context.signOut();
-       navigate("/login");
+       navigate("/");
     }
     
     return (
