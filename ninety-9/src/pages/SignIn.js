@@ -26,10 +26,10 @@ function SignIn(props) {
             context.setErrors(null, false);
             
             let user = context.currentUser; 
-            if (user.account_type == "A"){
+            if (user.Account_Type == "A"){
                 navigate("/Admin");
             }
-            else if (user.account_type == "D"){
+            else if (user.Account_Type == "D"){
                 navigate("/DAdmin");
             }
             else 
