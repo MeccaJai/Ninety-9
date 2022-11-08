@@ -1,4 +1,4 @@
-package com.example.ginfotoyou.controllers;
+package com.example.ginfotoyou.controllers2;
 
 
 import com.example.ginfotoyou.auth.models.FirebaseUser;
