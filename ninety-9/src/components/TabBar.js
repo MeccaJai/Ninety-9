@@ -15,7 +15,7 @@ function TabBar (){
         </li>
 
         <li className="nav-item">
-            <Link to="/logout" className="nav-link active" aria-current="page"
+            <Link to="/" className="nav-link active" aria-current="page"
                  aria-expanded="false"> Sign Out </Link>
         </li>
     </ul>
