@@ -42,13 +42,6 @@ function SignIn(props) {
         }
     }
     
-    async function handleLogOut(event){
-       event.preventDefault();
-
-       localStorage.clear();
-       await context.signOut();
-       navigate("/");
-    }
     
     return (
         <>
