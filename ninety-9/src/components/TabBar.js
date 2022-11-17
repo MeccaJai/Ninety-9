@@ -1,6 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+async function handleLogOut(event){
+       event.preventDefault();
+
+       localStorage.clear();
+       await context.signOut();
+    }
+
 function TabBar (){
     return(
         <ul className="nav nav-tabs justify-content-center">
