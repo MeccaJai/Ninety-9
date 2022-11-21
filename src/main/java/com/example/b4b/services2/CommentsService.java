@@ -1,6 +1,5 @@
 package com.example.restaurant.services2;
 
-import com.example.restaurant.models.Menu;
 import com.example.restaurant.models2.Comments;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -8,7 +7,6 @@ import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -44,4 +42,13 @@ public class CommentsService {
 
         return list;
     }
+
+    /*
+    public void newComment (Comments comment) throws ExecutionException, InterruptedException {
+        Firestore db = FirestoreClient.getFirestore();
+        //Comments commentx = new Comments();
+
+        ApiFuture<DocumentReference> commentRef = db.collection("Comments").add(comment);
+    }
+     */
 }

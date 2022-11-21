@@ -4,10 +4,8 @@ import com.example.restaurant.models2.Accounts;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import com.google.protobuf.Api;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -50,10 +48,12 @@ public class AccountsService {
     }
 
     public void deactivateAccount(String id) throws ExecutionException, InterruptedException {
-        Accounts account = new Accounts();
 
         Firestore db = FirestoreClient.getFirestore();
 
-        db.collection("Accounts").document(id).update("isActive", false);
+        DocumentReference docRef = db.collection("Accounts").document(id);
+        ApiFuture<WriteResult> future = docRef.update("isActive", false);
+
+        WriteResult result = future.get();
     }
 }
