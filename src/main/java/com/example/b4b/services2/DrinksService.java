@@ -28,6 +28,25 @@ public class DrinksService {
         return drinks;
     }
 
+    public ArrayList<Drinks> getAllForSearch(String query) throws ExecutionException, InterruptedException {
+        ArrayList<Drinks> drinksSearch = new ArrayList<>();
+
+        Firestore db = FirestoreClient.getFirestore();
+
+        ApiFuture<QuerySnapshot> future = db.collection("Drinks").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot document: documents) {
+            String drinkQuery = document.getString("drinkName");
+
+            if (drinkQuery.contains(query)){
+                drinksSearch.add(document.toObject(Drinks.class));
+            }
+        }
+
+        return drinksSearch;
+    }
+
     public Drinks getDrinkbyID(Integer id) throws ExecutionException, InterruptedException {
         Drinks drink = new Drinks();
 
@@ -73,7 +92,7 @@ public class DrinksService {
         for (Drinks drink: drinks2) {
             String category = drink.getDCategory();
 
-            if (category.equals("Ordinary")){
+            if (category.equals("Ordinary Drink")){
                 counts[0] = counts[0] + 1;
             } else if (category.equals("Cocktail")) {
                 counts[1] = counts[1] + 1;

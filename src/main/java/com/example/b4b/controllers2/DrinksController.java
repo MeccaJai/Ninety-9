@@ -27,6 +27,11 @@ public class DrinksController {
         return drinksService.getAllDrinks();
     }
 
+    @GetMapping("/{query}")
+    public ArrayList<Drinks> getAllForSearch(@PathVariable String query) throws  ExecutionException, InterruptedException {
+        return drinksService.getAllForSearch(query);
+    }
+
     @GetMapping("/{id}")
     public Drinks getDrinkByID(@PathVariable Integer id) throws ExecutionException, InterruptedException {
         return drinksService.getDrinkbyID(id);
