@@ -20,4 +20,5 @@ public class Drinks {
     private String username;
     private Boolean drinkAch;
     private Boolean approved;
+    private Double rating;
 }

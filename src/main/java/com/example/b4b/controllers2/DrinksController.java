@@ -62,4 +62,16 @@ public class DrinksController {
         drinksService.editRecipe(id, name, info);
     }
 
+    @GetMapping("/history/{id}")
+    public ArrayList<Drinks> drinkHistory(@PathVariable String id) throws ExecutionException, InterruptedException {
+        return drinksService.drinkHistory(id);
+    }
+    @GetMapping("/{id}/{newRate}")
+    public void updateRating(@PathVariable String id, @PathVariable Double newRate) throws ExecutionException, InterruptedException {
+        drinksService.updateRating(id, newRate);
+    }
+    @GetMapping("/unnaproved")
+     public ArrayList<Drinks> displayUNPROV() throws ExecutionException, InterruptedException {
+        return drinksService.displayUNPROV();
+     }
 }

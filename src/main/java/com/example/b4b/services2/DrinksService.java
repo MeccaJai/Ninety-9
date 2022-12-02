@@ -160,4 +160,71 @@ public class DrinksService {
 
         WriteResult result = future.get();
     }
+
+    public ArrayList<Drinks> drinkHistory(String id) throws ExecutionException, InterruptedException {
+        ArrayList<Drinks> drinksHist = new ArrayList<>();
+
+        Firestore db = FirestoreClient.getFirestore();
+
+        DocumentReference userRef = db.collection("Accounts").document(id);
+        ApiFuture<DocumentSnapshot> userDoc = userRef.get();
+        DocumentSnapshot document = userDoc.get();
+        String username = document.getString("username");
+
+        ApiFuture<QuerySnapshot> future = db.collection("Drinks")
+                .whereEqualTo("username", username)
+                .get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot documentX: documents) {
+            drinksHist.add(documentX.toObject(Drinks.class));
+        }
+
+        return drinksHist;
+    }
+
+    static Double counter = 1.00;
+    static Double rolling_rating;
+    public void updateRating(String id, Double newRate) throws ExecutionException, InterruptedException {
+        Firestore db = FirestoreClient.getFirestore();
+
+        DocumentReference drinkRef = db.collection("Drinks").document(id);
+        ApiFuture<DocumentSnapshot> drinkDoc = drinkRef.get();
+        DocumentSnapshot document = drinkDoc.get();
+        Double current_rate = document.getDouble("rating");
+
+        Double newRate_;
+        counter = counter + 1;
+        if (counter <= 2){
+            rolling_rating = rolling_rating + newRate;
+        }
+        else {
+            rolling_rating = current_rate + newRate;
+        }
+        newRate_ = rolling_rating / counter;
+
+        ApiFuture<WriteResult> future = drinkRef.update("rating", newRate_);
+
+        WriteResult result = future.get();
+
+    }
+
+    public ArrayList<Drinks> displayUNPROV () throws ExecutionException, InterruptedException {
+        ArrayList<Drinks> unnaprovedDrinks = new ArrayList<>();
+
+        Firestore db = FirestoreClient.getFirestore();
+
+        ApiFuture<QuerySnapshot> future = db.collection("Drinks").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot document: documents) {
+            Boolean drinkQuery = document.getBoolean("approved");
+
+            if (drinkQuery == false){
+                unnaprovedDrinks.add(document.toObject(Drinks.class));
+            }
+        }
+
+        return unnaprovedDrinks;
+    }
 }

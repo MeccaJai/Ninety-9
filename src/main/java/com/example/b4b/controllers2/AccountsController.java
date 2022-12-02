@@ -24,14 +24,23 @@ public class AccountsController {
     public ArrayList<Accounts> getUserAccounts() throws ExecutionException, InterruptedException {
         return accountsService.getUserAccounts();
     }
+    @GetMapping("/{query}")
+    public ArrayList<Accounts> getAllForSearch(@PathVariable String query) throws ExecutionException, InterruptedException {
+        return  accountsService.getAllForSearch(query);
+    }
 
-    @GetMapping("/{id}")
-    public Accounts getAccount(@PathVariable String id) throws ExecutionException, InterruptedException {
-        return accountsService.getAccount(id);
+    @GetMapping("/{username}")
+    public Accounts getAccountbyUN(@PathVariable String username) throws ExecutionException, InterruptedException {
+        return accountsService.getAccountbyUN(username);
     }
 
     @GetMapping("/deactivate/{id}")
     public void deactivateAccount(@PathVariable String id) throws ExecutionException, InterruptedException {
         accountsService.deactivateAccount(id);
+    }
+
+    @GetMapping("/activate/{id}")
+    public void activateAccount(@PathVariable String id) throws ExecutionException, InterruptedException {
+        accountsService.activateAccount(id);
     }
 }

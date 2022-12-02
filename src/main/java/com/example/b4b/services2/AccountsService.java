@@ -28,19 +28,38 @@ public class AccountsService {
         return users;
     }
 
-    public Accounts getAccount(String id) throws ExecutionException, InterruptedException {
+    public ArrayList<Accounts> getAllForSearch(String query) throws ExecutionException, InterruptedException {
+        ArrayList<Accounts> accountSearch = new ArrayList<>();
+
+        Firestore db = FirestoreClient.getFirestore();
+
+        ApiFuture<QuerySnapshot> future = db.collection("Accounts").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot document: documents) {
+            String userQuery = document.getString("username");
+
+            if (userQuery.contains(query)){
+                accountSearch.add(document.toObject(Accounts.class));
+            }
+        }
+
+        return accountSearch;
+    }
+    public Accounts getAccountbyUN(String username) throws ExecutionException, InterruptedException {
         Accounts account = new Accounts();
 
         Firestore db = FirestoreClient.getFirestore();
 
-        DocumentReference docRef = db.collection("Accounts").document(id);
+        ApiFuture<QuerySnapshot> future = db.collection("Accounts")
+                .whereEqualTo("username", username)
+                .get();
 
-        ApiFuture<DocumentSnapshot> future = docRef.get();
+        List<QueryDocumentSnapshot> userDoc = future.get().getDocuments();
 
-        DocumentSnapshot document = future.get();
 
-        if(document.exists()) {
-            account = document.toObject(Accounts.class);
+        if(userDoc.get(0) != null) {
+            account = userDoc.get(0).toObject(Accounts.class);
         }
 
         return account;
@@ -56,4 +75,16 @@ public class AccountsService {
 
         WriteResult result = future.get();
     }
+
+    public void activateAccount(String id) throws ExecutionException, InterruptedException {
+
+        Firestore db = FirestoreClient.getFirestore();
+
+        DocumentReference docRef = db.collection("Accounts").document(id);
+        ApiFuture<WriteResult> future = docRef.update("isActive", true);
+
+        WriteResult result = future.get();
+    }
+
+
 }
