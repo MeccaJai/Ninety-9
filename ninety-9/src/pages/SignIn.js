@@ -25,15 +25,7 @@ function SignIn(props) {
         {
             context.setErrors(null, false);
             
-            let user = context.currentUser; 
-            if (user.Account_Type == "A"){
-                navigate("/Admin");
-            }
-            else if (user.Account_Type == "D"){
-                navigate("/DAdmin");
-            }
-            else 
-                navigate("/home");
+            navigate("/home");
             // if statements needed to added for specific home pages for the users, drink admins, and admins
 
         }
