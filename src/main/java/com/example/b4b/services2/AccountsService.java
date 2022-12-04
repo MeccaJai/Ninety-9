@@ -66,24 +66,42 @@ public class AccountsService {
 
     }
 
-    public void deactivateAccount(String id) throws ExecutionException, InterruptedException {
+    public void deactivateAccount(String username) throws ExecutionException, InterruptedException {
 
         Firestore db = FirestoreClient.getFirestore();
 
-        DocumentReference docRef = db.collection("Accounts").document(id);
-        ApiFuture<WriteResult> future = docRef.update("isActive", false);
+        ApiFuture<QuerySnapshot> future = db.collection("Accounts")
+                .whereEqualTo("username", username)
+                .get();
 
-        WriteResult result = future.get();
+        List<QueryDocumentSnapshot> userDoc = future.get().getDocuments();
+        for (QueryDocumentSnapshot document: userDoc) {
+            String docID = document.getId();
+
+            DocumentReference docRef = db.collection("Accounts").document(docID);
+            ApiFuture<WriteResult> future2 = docRef.update("isActive", false);
+
+            WriteResult result = future2.get();
+        }
     }
 
-    public void activateAccount(String id) throws ExecutionException, InterruptedException {
+    public void activateAccount(String username) throws ExecutionException, InterruptedException {
 
         Firestore db = FirestoreClient.getFirestore();
 
-        DocumentReference docRef = db.collection("Accounts").document(id);
-        ApiFuture<WriteResult> future = docRef.update("isActive", true);
+        ApiFuture<QuerySnapshot> future = db.collection("Accounts")
+                .whereEqualTo("username", username)
+                .get();
 
-        WriteResult result = future.get();
+        List<QueryDocumentSnapshot> userDoc = future.get().getDocuments();
+        for (QueryDocumentSnapshot document: userDoc) {
+            String docID = document.getId();
+
+            DocumentReference docRef = db.collection("Accounts").document(docID);
+            ApiFuture<WriteResult> future2 = docRef.update("isActive", true);
+
+            WriteResult result = future2.get();
+        }
     }
 
 

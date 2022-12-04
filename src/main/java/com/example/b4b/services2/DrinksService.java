@@ -156,9 +156,20 @@ public class DrinksService {
         Firestore db = FirestoreClient.getFirestore();
 
         DocumentReference docRef = db.collection("Drinks").document(id);
-        ApiFuture<WriteResult> future = docRef.update(name, info);
+        ApiFuture<QuerySnapshot> future = db.collection("Drinks")
+                .whereEqualTo("drinkID", id)
+                .get();
 
-        WriteResult result = future.get();
+        List<QueryDocumentSnapshot> drinkDocs = future.get().getDocuments();
+        for (QueryDocumentSnapshot document: drinkDocs) {
+            String docID = document.getId();
+
+            DocumentReference drinkRef = db.collection("Drinks").document(docID);
+            ApiFuture<WriteResult> future2 = docRef.update(name, info);
+
+            WriteResult result = future2.get();
+        }
+
     }
 
     public ArrayList<Drinks> drinkHistory(String id) throws ExecutionException, InterruptedException {

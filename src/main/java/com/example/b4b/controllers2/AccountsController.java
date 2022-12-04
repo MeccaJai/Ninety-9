@@ -34,13 +34,13 @@ public class AccountsController {
         return accountsService.getAccountbyUN(username);
     }
 
-    @GetMapping("/deactivate/{id}")
-    public void deactivateAccount(@PathVariable String id) throws ExecutionException, InterruptedException {
-        accountsService.deactivateAccount(id);
+    @GetMapping("/deactivate/{username}")
+    public void deactivateAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
+        accountsService.deactivateAccount(username);
     }
 
-    @GetMapping("/activate/{id}")
-    public void activateAccount(@PathVariable String id) throws ExecutionException, InterruptedException {
-        accountsService.activateAccount(id);
+    @GetMapping("/activate/{username}")
+    public void activateAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
+        accountsService.activateAccount(username);
     }
 }
