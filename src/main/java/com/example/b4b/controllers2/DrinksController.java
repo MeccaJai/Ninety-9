@@ -17,7 +17,6 @@ public class DrinksController {
 
     public DrinksService drinksService;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public DrinksController(DrinksService drinksService) {
         this.drinksService = drinksService;
     }
@@ -48,23 +47,23 @@ public class DrinksController {
     }
 
     @GetMapping("/approve/{id}")
-    public void approveDrink(@PathVariable String id) throws  ExecutionException, InterruptedException {
+    public void approveDrink(@PathVariable Integer id) throws  ExecutionException, InterruptedException {
         drinksService.approveDrink(id);
     }
 
     @GetMapping("/remove/{id}")
-    public void removeDrink(@PathVariable String id) throws ExecutionException, InterruptedException {
+    public void removeDrink(@PathVariable Integer id) throws ExecutionException, InterruptedException {
         drinksService.removeDrink(id);
     }
 
     @GetMapping("/edit/{id}/{name}/{info}")
-    public void editRecipe(@PathVariable String id, @PathVariable String name, @PathVariable String info) throws  ExecutionException, InterruptedException {
+    public void editRecipe(@PathVariable Integer id, @PathVariable String name, @PathVariable String info) throws  ExecutionException, InterruptedException {
         drinksService.editRecipe(id, name, info);
     }
 
     @GetMapping("/history/{id}")
-    public ArrayList<Drinks> drinkHistory(@PathVariable String id) throws ExecutionException, InterruptedException {
-        return drinksService.drinkHistory(id);
+    public ArrayList<Drinks> drinkHistory(@PathVariable String username) throws ExecutionException, InterruptedException {
+        return drinksService.drinkHistory(username);
     }
     @GetMapping("/{id}/{newRate}")
     public void updateRating(@PathVariable String id, @PathVariable Double newRate) throws ExecutionException, InterruptedException {

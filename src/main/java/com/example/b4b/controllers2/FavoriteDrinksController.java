@@ -17,7 +17,6 @@ public class FavoriteDrinksController {
 
     public FavoriteDrinksService favoriteDrinksService;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public FavoriteDrinksController(FavoriteDrinksService favoriteDrinksService) {
         this.favoriteDrinksService = favoriteDrinksService;
     }
