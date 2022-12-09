@@ -18,7 +18,7 @@ public class DrinksApplication {
         ClassLoader loader = DrinksApplication.class.getClassLoader();
 
 //opens the file stored in resources
-        File file = new File(loader.getResource("serviceAccountKey.json").getFile());
+        File file = new File(loader.getResource("serviceAccountkey.json").getFile());
 //reads the data from the file
         FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
 
